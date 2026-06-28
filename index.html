@@ -71,6 +71,7 @@
     nav a {
       display: inline-flex;
       align-items: center;
+      gap: 8px;
       min-height: 40px;
       padding: 0 14px;
       border-radius: 999px;
@@ -91,9 +92,72 @@
     }
 
     h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       margin: 0 0 18px;
       font-size: 28px;
       line-height: 1.2;
+    }
+
+    .flag {
+      display: inline-block;
+      width: 26px;
+      height: 18px;
+      flex: 0 0 auto;
+      overflow: hidden;
+      border-radius: 3px;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.16);
+      vertical-align: -3px;
+    }
+
+    .flag-us {
+      position: relative;
+      background: repeating-linear-gradient(
+        to bottom,
+        #b22234 0,
+        #b22234 7.69%,
+        #ffffff 7.69%,
+        #ffffff 15.38%
+      );
+    }
+
+    .flag-us::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40%;
+      height: 53.8%;
+      background: #3c3b6e;
+    }
+
+    .flag-br {
+      position: relative;
+      background: #009b3a;
+    }
+
+    .flag-br::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 58%;
+      height: 58%;
+      background: #ffdf00;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .flag-br::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 34%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #002776;
+      transform: translate(-50%, -50%);
     }
 
     h3 {
@@ -151,14 +215,14 @@
       <h1>Privacy Policy</h1>
       <p class="summary">This page explains how Leonida Map Maker handles information, advertising, local map edits, and sharing features.</p>
       <nav aria-label="Language">
-        <a href="#english"><span aria-hidden="true">🇺🇸</span> English</a>
-        <a href="#portugues"><span aria-hidden="true">🇧🇷</span> Português</a>
+        <a href="#english"><span class="flag flag-us" aria-hidden="true"></span> English</a>
+        <a href="#portugues"><span class="flag flag-br" aria-hidden="true"></span> Português</a>
       </nav>
     </header>
 
     <section id="english" aria-labelledby="english-title">
       <p class="date">Last updated: June 27, 2026</p>
-      <h2 id="english-title"><span aria-hidden="true">🇺🇸</span> Privacy Policy - English</h2>
+      <h2 id="english-title"><span class="flag flag-us" aria-hidden="true"></span> Privacy Policy - English</h2>
 
       <p>Leonida Map Maker is a map customization app. Users can place icons on a map, save their map state locally on the device, and share an image of the customized map through apps chosen by the user.</p>
 
@@ -191,7 +255,7 @@
 
     <section id="portugues" aria-labelledby="portugues-title">
       <p class="date">Última atualização: 27 de junho de 2026</p>
-      <h2 id="portugues-title"><span aria-hidden="true">🇧🇷</span> Política de Privacidade - Português</h2>
+      <h2 id="portugues-title"><span class="flag flag-br" aria-hidden="true"></span> Política de Privacidade - Português</h2>
 
       <p>Leonida Map Maker é um aplicativo de personalização de mapa. O usuário pode posicionar ícones no mapa, salvar o estado do mapa localmente no dispositivo e compartilhar uma imagem do mapa personalizado por meio dos aplicativos escolhidos pelo próprio usuário.</p>
 
