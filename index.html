@@ -81,6 +81,11 @@
       text-decoration: none;
     }
 
+    nav a.active {
+      background: #111111;
+      color: #ffffff;
+    }
+
     section {
       margin-top: 18px;
       padding: 28px;
@@ -89,6 +94,10 @@
       background: var(--panel);
       box-shadow: 0 18px 60px rgba(0, 0, 0, 0.06);
       backdrop-filter: blur(18px);
+    }
+
+    .policy-panel[hidden] {
+      display: none;
     }
 
     h2 {
@@ -217,12 +226,12 @@
       <h1>Privacy Policy</h1>
       <p class="summary">This page explains how Leonida Map Maker handles information, advertising, local map edits, and sharing features.</p>
       <nav aria-label="Language">
-        <a href="#english"><span class="flag flag-us" aria-hidden="true"></span> English</a>
-        <a href="#portugues"><span class="flag flag-br" aria-hidden="true"></span> Português</a>
+        <a class="language-link active" href="#english" data-language="english" aria-controls="english" aria-current="true"><span class="flag flag-us" aria-hidden="true"></span> English</a>
+        <a class="language-link" href="#portugues" data-language="portugues" aria-controls="portugues"><span class="flag flag-br" aria-hidden="true"></span> Português</a>
       </nav>
     </header>
 
-    <section id="english" aria-labelledby="english-title">
+    <section class="policy-panel" id="english" aria-labelledby="english-title">
       <p class="date">Last updated: June 27, 2026</p>
       <h2 id="english-title"><span class="flag flag-us" aria-hidden="true"></span> Privacy Policy - English</h2>
 
@@ -255,7 +264,7 @@
       <p>If you have questions about this Privacy Policy, contact us at <a href="mailto:luidy123neres@gmail.com">luidy123neres@gmail.com</a>.</p>
     </section>
 
-    <section id="portugues" aria-labelledby="portugues-title">
+    <section class="policy-panel" id="portugues" aria-labelledby="portugues-title" hidden>
       <p class="date">Última atualização: 27 de junho de 2026</p>
       <h2 id="portugues-title"><span class="flag flag-br" aria-hidden="true"></span> Política de Privacidade - Português</h2>
 
@@ -292,5 +301,38 @@
       <p>Leonida Map Maker</p>
     </footer>
   </main>
+  <script>
+    const languageLinks = document.querySelectorAll(".language-link");
+    const panels = document.querySelectorAll(".policy-panel");
+
+    function setLanguage(language) {
+      panels.forEach((panel) => {
+        panel.hidden = panel.id !== language;
+      });
+
+      languageLinks.forEach((link) => {
+        const active = link.dataset.language === language;
+        link.classList.toggle("active", active);
+        if (active) {
+          link.setAttribute("aria-current", "true");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    languageLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const language = link.dataset.language;
+        setLanguage(language);
+        history.replaceState(null, "", `#${language}`);
+      });
+    });
+
+    if (location.hash === "#portugues") {
+      setLanguage("portugues");
+    }
+  </script>
 </body>
 </html>
